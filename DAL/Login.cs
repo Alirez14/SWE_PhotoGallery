@@ -55,7 +55,6 @@ namespace DAL
             }
 
             return member;
-
         }
     }
 }

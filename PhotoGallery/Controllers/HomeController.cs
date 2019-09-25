@@ -40,8 +40,8 @@ namespace PhotoGallery.Controllers
 
             var ViewModel = new PhotographerViewModel.PhotoMembersViewModel()
             {
-                 Members = members,
-                 photos = photos 
+                Members = members,
+                photos = photos
             };
 
             return View(ViewModel);
@@ -71,7 +71,7 @@ namespace PhotoGallery.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(string firstname, string lastname, string middlename, string email, DateTime? birthday)
@@ -136,7 +136,7 @@ namespace PhotoGallery.Controllers
         [HttpPost]
         public IActionResult EditPhoto(int id, string text, string tags, string camera, string model, int ios, string meteric)
         {
-            if (!String.IsNullOrEmpty(text) || !String.IsNullOrEmpty(tags) )
+            if (!String.IsNullOrEmpty(text) || !String.IsNullOrEmpty(tags))
             {
                 var edit = new EditPhoto();
                 edit.UpdateIptc(text, tags, id);
@@ -160,7 +160,7 @@ namespace PhotoGallery.Controllers
 
         public IActionResult Delete()
         {
-            return null;
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -185,6 +185,16 @@ namespace PhotoGallery.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Register(string FirstName, string MiddleName, string LastName, string Notice, DateTime? DateOfBirth, string Email, string Password)
+        {
+
+            new Register().AddMember(FirstName, MiddleName, LastName, Notice, DateOfBirth, Email, Password);
+
+            return RedirectToAction("Index");
         }
     }
 }

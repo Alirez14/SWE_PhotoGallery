@@ -12,11 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Register" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>*@
+
             <br />
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -50,9 +46,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input type="password" asp-for="Password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <div id="PasswordUpperDivId" class="invalid password_requirement"><h6>At least one upper case letter.</h6></div>
+                <div id="PasswordLowerDivId" class="invalid password_requirement"><h6>At least one lower case letter.</h6></div>
+                <div id="PasswordDigitDivId" class="invalid password_requirement"><h6>At least one digit.</h6></div>
+                <div id="PasswordSpecialDivId" class="invalid password_requirement"><h6>At least one special character.</h6></div>
+                <div id="PasswordLengthDivId" class="invalid password_requirement mb-2"><h6>At least 8 characters long.</h6></div>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

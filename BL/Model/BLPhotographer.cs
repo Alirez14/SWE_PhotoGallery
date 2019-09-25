@@ -13,11 +13,17 @@ namespace BL.Models
         [StringLength(20,ErrorMessage = "{0} must be between {2} and {1}", MinimumLength = 6)]
         public string FirstName { get; set; }
 
+        [Required]
+        [StringLength(20, ErrorMessage = "{0} must be between {2} and {1}", MinimumLength = 6)]
+
         public string MiddleName { get; set; }
 
         [Required]
         [StringLength(20, ErrorMessage = "{0} must be between {2} and {1}", MinimumLength = 6)]
         public string LastName { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage = "{0} must be between {2} and {1}", MinimumLength = 6)]
 
         public string Notice { get; set; }
 
@@ -30,6 +36,7 @@ namespace BL.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 7)]
         [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W]).{8,}$", ErrorMessage = "The {0} does not meet requirements.")]
         public string Password { get; set; }
     }
 }
