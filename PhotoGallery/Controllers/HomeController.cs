@@ -158,8 +158,16 @@ namespace PhotoGallery.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(string str)
         {
+            int session = Convert.ToInt32(HttpContext.Session.GetString("Id"));
+            if (str == "no")
+            {
+                return RedirectToAction("Profile", session);
+            }
+            var delete = new Delete();
+            delete.deleteMember(session);
             return RedirectToAction("Index");
         }
 

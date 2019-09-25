@@ -15,7 +15,6 @@
         display: table;
         clear: both;
     }
-
 </style>
 
 <h1>Search</h1>
@@ -24,11 +23,17 @@
 <a asp-action="Profile"> <p class="w3-xlarge"><i class="fa fa-home"></i> Home</p></a>
 
 @{
+
+    if (Model == null)
+    {
+        <h2>There is no photos with this tag name</h2>
+    }
+
     foreach (var item in Model)
     {
         <div class="row">
-            <div class="column">
-                <img id="@item.Id" src="@item.Image" alt="@item.Ipic" width="200" height="800" @*onclick="myFunction(this);"*@>
+            <div class="column allImages">
+                <img id="@item.Id" src="@item.Image" alt="@item.Ipic" width="200" height="800">
             </div>
             <div class="column">
                 <h5><b>IPTC</b></h5>
@@ -43,10 +48,11 @@
                 <p>Metric: @item.BLExif.MeteringMode</p>
             </div>
             <div class="column">
-                <button id="editphoto" style='font-size:14px'>Edit <i class='fas fa-pen'></i></button>
+                @Html.ActionLink("Edit", "EditPhoto", new { id = item.Id }) <i class="fas fa-pen"></i>
             </div>
         </div>
         <br />
         <br />
     }
+
 }

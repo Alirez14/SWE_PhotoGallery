@@ -2,12 +2,12 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-$("#Edit").click(function() {
+$("#Edit").click(function () {
     $("#edit").show();
 });
 
 
-$("#Editiptc").click(function() {
+$("#Editiptc").click(function () {
     $("#editiptc").show();
 });
 
@@ -43,15 +43,28 @@ function myFunction(imgs) {
     expandImg.parentElement.style.display = "block";
 }
 
+$("#deleteForm").submit(function (e) {
+    e.preventDefault();
+    var formValue = $('.yesorno').val();
+    $.ajax({
+        url: "Delete/" + formValue,
+        data: { formValue: formValue },
+        method: "GET",
+        success: function () {
+            window.location.href = "Delete/" + formValue;
+        }
+    })
+});
+
 
 $("#editphoto").click(function (e) {
     e.preventDefault();
     var value = $("#editphoto").val();
     $.ajax({
-        url: "EditPhoto/"+ value ,
+        url: "EditPhoto/" + value,
         type: "GET",
         success: function () {
-            window.location.href = "EditPhoto/" + value ;
+            window.location.href = "EditPhoto/" + value;
         }
     });
 
@@ -59,11 +72,11 @@ $("#editphoto").click(function (e) {
 
 var currentPath = window.location.pathname;
 if (currentPath !== '/identity/account/login' && currentPath !== '/identity/account/manage/deletepersonaldata'
-    &&(document.querySelector('#Input_Password') || document.querySelector('#Input_NewPassword'))) {
+    && (document.querySelector('#Input_Password') || document.querySelector('#Input_NewPassword'))) {
 
     var passwordInput = document.querySelector('#Input_Password');
     if (!passwordInput) {
-            passwordInput = document.querySelector('#Input_NewPassword');
+        passwordInput = document.querySelector('#Input_NewPassword');
     }
 
     var upper = document.querySelector('#PasswordUpperDivId');
@@ -71,7 +84,7 @@ if (currentPath !== '/identity/account/login' && currentPath !== '/identity/acco
     var digit = document.querySelector('#PasswordDigitDivId');
     var special = document.querySelector('#PasswordSpecialDivId');
     var length = document.querySelector('#PasswordLengthDivId');
-        
+
     // When the user starts to type something inside the password field
     passwordInput.addEventListener('keyup', function () {
 
@@ -125,3 +138,5 @@ if (currentPath !== '/identity/account/login' && currentPath !== '/identity/acco
         }
     });
 }
+
+

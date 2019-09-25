@@ -25,7 +25,7 @@ namespace TestProject1
             byte[] b = Encoding.ASCII.GetBytes(i);
             var login = new Login();
             BLPhotographer person = login.authorization("barakatisina@gmail.com",b );
-            Assert.IsNull(person);
+            Assert.IsNotNull(person);
         }
     }
 }

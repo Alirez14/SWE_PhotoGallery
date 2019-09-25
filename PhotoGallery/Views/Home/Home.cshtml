@@ -13,10 +13,10 @@
     <br />
     <br />
     <div>
-        <form asp-controller ="Home" asp-action="Search" style="float: right;" method="get" >
+        <form asp-controller="Home" asp-action="Search" style="float: right;" method="get">
             <div class="formContainer">
                 <div class="boxleft">
-                    <input type="text" name="search" placeholder="Search Photo By Tags..." required/>
+                    <input type="text" name="search" placeholder="Search Photo By Tags..." required />
                 </div>
                 <div class="boxright">
                     <input type="submit" value="Search" />
@@ -38,7 +38,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>@Model.Id</td> 
+                <td>@Model.Id</td>
                 <td>@Model.FirstName @Model.LastName</td>
                 <td>@Model.DateOfBirth.Year/@Model.DateOfBirth.Month/@Model.DateOfBirth.Day</td>
 
@@ -104,18 +104,23 @@
 
 <div id="delete" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-header">
-            <b style="color: red;">ALERT!</b>
-        </div>
-        <div class ="modal-body">
-            <br />
-            <form asp-action="Delete" method="post">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button style="color: #c66e02" type="button" class="close" data-dismiss="modal">&times;</button>
+                <b style="color: red;">ALERT!</b>
+            </div>
+            <div class="modal-body">
+                <br />
+
                 <h4>Are you Sure you want to delete your accout?</h4>
                 <h6>All your data will be delete</h6>
                 <br />
-                <button style="margin-right: 20px;" class="btn btn-sm btn-danger">Yes</button>
-                <button class="btn btn-sm btn-info">No</button>
-            </form>
+                <form id="deleteForm">
+                    <input type="submit" class="yesorno" value="Yes"/>
+                    <input type="submit" class="yesorno" value="No"/>
+                </form>
+            </div>
         </div>
     </div>
 </div>
