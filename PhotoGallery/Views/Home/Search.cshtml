@@ -1,0 +1,19 @@
+﻿@model List<BL.Models.BLPhoto>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="searchContainer">
+            <img id="@item.Id" src="@item.Image" alt="@item.Ipic" style="width: 30%; height: 30%" @*onclick="myFunction(this);"*@>
+            <h3>IPTC</h3>
+            <p>item</p>
+
+        </div>
+    }
+}

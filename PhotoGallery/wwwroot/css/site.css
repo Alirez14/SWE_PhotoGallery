@@ -1,0 +1,243 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+* {
+    box-sizing: border-box;
+}
+
+div.formContainer {
+    width: 100%;
+}
+
+div.boxleft {
+    box-sizing: border-box;
+    width: 10%;
+    float: left;
+}
+
+div.boxright {
+    box-sizing: border-box;
+    width: 35%;
+    float: right;
+    margin-left: 20px;
+}
+
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    margin-top: 110px;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left {
+    left: 0;
+    background-color: teal;
+}
+
+.right {
+    right: 0;
+    background-color: white;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+    .centered img {
+        width: 150px;
+        border-radius: 50%;
+    }
+
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: whitesmoke;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+form {
+    display: inline-block;
+}
+
+#edit {
+    height: 80%;
+}
+
+.legendLabel {
+    color: white;
+}
+
+#homeForm {
+    color: white;
+}
+
+.button {
+    background-color: whitesmoke;
+    color: #32322e;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 15px 8px 15px;
+}
+
+    .button:hover {
+        background-color: #32322e;
+        color: whitesmoke;
+    }
+
+
+
+.row {
+    border: solid 2px black;
+}
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    height: 50%;
+}
+
+.column img {
+    opacity: 0.5;
+    cursor: pointer;
+    height: 200px;
+}
+
+.column img:hover {
+    opacity: 1;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.gallerycontainer {
+    position: relative;
+    background-color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
+}
+
+#imgtext {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-size: 30px;
+}
+
+.closebtn {
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    color: #007bff;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+     .iptc {
+         width: 45% !important;
+     }
+
+     #exif {
+         width: 45% !important;
+     }
+ }
+
+.iptc {
+    display: block;
+    max-width: 555px;
+    margin: auto;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#iptcForm {
+    display: block;
+    max-width: 700px;
+    margin: auto;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.exif {
+    position: relative;
+    background-color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: none;
+}
+
+.w3-table-all pic{
+    text-align: center !important;
+}
+
+h2 {
+    text-align: center;
+}
+
+#delete {
+    background-color: white;
+}

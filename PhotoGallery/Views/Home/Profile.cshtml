@@ -1,0 +1,115 @@
+﻿@model BL.Models.BLPhotographer
+@{
+    ViewData["Title"] = "Profile";
+}
+<link rel="stylesheet" href="~/css/site.css" />
+
+<h1>Profile</h1>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @Model.FirstName</h1>
+    <br />
+    <br />
+    <div>
+        <form style="float: right;" method="get" asp-action="Search">
+            <div class="formContainer">
+                <div class="boxleft">
+                    <input type="text" placeholder="Search Photo..." />
+                </div>
+                <div class="boxright">
+                    <input type="submit" value="Search" />
+                </div>
+            </div>
+        </form>
+        <br />
+        <br />
+    </div>
+    <table class="table table-bordered table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Photographer</th>
+                <th>Date oF Birth</th>
+                <th colspan="3">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.FirstName @Model.LastName</td>
+                <td>@Model.DateOfBirth.Year/@Model.DateOfBirth.Month/@Model.DateOfBirth.Day</td>
+
+                <td> <button type="button" id="Gallery" class="btn btn-sm btn-primary"> Gallery</button> </td>
+                <td> <button type="button" asp-for="@Model.Id" id="Edit" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success"> Edit </button> </td>
+                <td> <button type="button" id="Delete" data-toggle="modal" data-target="#delete" class="btn btn-sm btn-danger"> Delete</button> </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <br />
+    <a asp-action="Index"><button type="button" id="btn" class="button" value="Index"> Logout </button></a>
+
+
+</div>
+
+
+<div id="edit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div style="background-color: #32322e; color: white;" class="modal-content">
+            <div class="modal-header">
+                <b>Edit Your Profile </b>
+                <button style="color: #c66e02" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <br />
+                <form asp-action="Edit" method="post">
+                    <fieldset>
+                        <b style="color: #c66e02">Firstname:</b><br>
+                        <input type="text" name="firstname" id="firstname" placeholder="@Model.FirstName">
+
+                        <br>
+                        <br />
+                        <b style="color: #c66e02">Middlename:</b><br>
+                        <input type="text" id="middlename" name="middlename" placeholder="@Model.MiddleName">
+                        <br>
+                        <br />
+                        <b style="color: #c66e02">Lastname:</b><br>
+                        <input type="text" id="lastname" name="lastname" placeholder="@Model.LastName">
+                        <br>
+                        <br />
+                        <b style="color: #c66e02">E-mail: </b><br />
+                        <input for="Email" id="email" type="text" name="email" placeholder="@Model.Email" />
+                        <br>
+                        <br>
+                        <b style="color: #c66e02">Birthday:</b>
+                        <br />
+                        <input type="text" id="birthday" name="birthday" placeholder="@Model.DateOfBirth.Year/@Model.DateOfBirth.Month/@Model.DateOfBirth.Day"> <p style="color: #c66e02; font-size: 11px;">('yyyy/mm/dd')</p>
+                        <br>
+                        <input type="submit" value="Save">
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button style="background-color: #c66e02; color: azure;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="delete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <b>ALERT !</b>
+        </div>
+        <div class="modal-body">
+            <br />
+            <form asp-action="Delete" method="post">
+                <p>Are you Sure you want to delete your accout?</p> <br />
+                <h5>you will not able to login to the website anymore</h5>
+                <button class="btn btn-sm btn-danger">Yes</button>
+                <button class="btn btn-sm btn-info">No</button>
+            </form>
+        </div>
+    </div>
+</div>

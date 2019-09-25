@@ -1,0 +1,37 @@
+﻿@model List<BL.Models.BLPhoto>
+@{
+    ViewData["Title"] = "Gallery";
+
+}
+<h2>Gallery</h2>
+<br />
+<a asp-action="Profile"><button class="btn btn-primary">Back to Profile</button></a>
+<br />
+<br />
+
+<!-- The four columns -->
+<div class="row">
+    @{
+        for (int i = 0; i < @Model.Count; i++)
+        {
+            <div class="column">
+                <img id="@Model[i].Id" src="@Model[i].Image" alt="@Model[i].Ipic" style="width: 100%" onclick="myFunction(this);">
+            </div>
+        }
+    }
+</div>
+<br />
+<br />
+
+<div class="gallerycontainer">
+    <span onclick="this.parentElement.style.display = 'none'" class="closebtn">&times;</span> <br /> <br />
+
+    <button id="editphoto" class="btn btn-sm btn-success iptc">Photo Details</button>
+
+    <img id="expandedImg" style="width: 50%; margin-left: auto; margin-right: auto; display: block">
+    <div id="imgtext">Paris</div>
+
+    <p id="ipicText" style="margin-left: auto; margin-right: auto; width: 50%; color: white;"></p>
+
+</div>
+

@@ -1,0 +1,175 @@
+﻿@model BL.Models.BLPhoto
+
+@{
+    ViewData["Title"] = "EditPhoto";
+}
+
+<h1>EditPhoto</h1>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <img src="@Model.Image" height="400" width="700" style="display: block; margin: auto" />
+
+    <dl class="row" style="border: solid 1px black; margin-top: 10px; padding: 10px 0px 20px 20px;">
+
+        @*Picture Detail*@
+        <dt class="col-sm-2">
+            <br />
+            <h3>Picture:</h3>
+            <hr />
+        </dt>
+        <dd class="col-sm-10">
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhotoGrapherId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhotoGrapherId)
+        </dd>
+
+        @* IPTC DETAILS *@
+        <dt class="col-sm-2">
+            <br />
+            <h3>IPTC:</h3>
+            <hr />
+        </dt>
+        <dd class="col-sm-10">
+
+        </dd>
+        <dt class="col-sm-2">
+            Text
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BlIptc.Text)
+        </dd>
+        <dt class="col-sm-2">
+            Tags
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BlIptc.Note)
+        </dd>
+
+        <dt class="col-sm-2">
+            <br />
+            <button type="button" id="Editiptc" data-toggle="modal" data-target="#editiptc" class="btn btn-sm btn-success"> Edit IPTC Data</button>
+        </dt>
+        <dd class="col-sm-10">
+        </dd>
+
+        @* EXIF DETAILS *@
+        <dt class="col-sm-2">
+            <br />
+            <h3>EXIF:</h3>
+            <hr />
+        </dt>
+        <dd class="col-sm-10">
+        </dd>
+        <dt class="col-sm-2">
+            Camera
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BLExif.CameraMaker)
+        </dd>
+        <dt class="col-sm-2">
+            Camera Model
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BLExif.CameraModel)
+        </dd>
+        <dt class="col-sm-2">
+            IOS Speed
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BLExif.IosSpeed)
+        </dd>
+        <dt class="col-sm-2">
+            Metering Mode
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BLExif.MeteringMode)
+        </dd>
+        <dt class="col-sm-2">
+            <br />
+            <button type="button" id="Editexif" data-toggle="modal" data-target="#editexif" class="btn btn-sm btn-success"> Edit EXIF Data</button>
+        </dt>
+        <dd class="col-sm-10">
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Gallery", new { /* id = Model.PrimaryKey */ })
+    @*<a asp-action="Gallery">Back to List</a>*@
+</div>
+
+
+<div id="editiptc" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div style="background-color: #32322e; color: white;" class="modal-content">
+            <div class="modal-header">
+                <b>Edit the IPTC </b>
+                <button style="color: #c66e02" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <br />
+                <form asp-action="" method="post">
+                    <fieldset>
+                        Picture ID: <br />
+                        <input type="text" name="id" asp-for="Id" disabled /><br /><br />
+                        Text:<br />
+                        <input type="text" name="iptcText" asp-for="@Model.BlIptc.Text" /> <br /><br />
+                        Tags:<br />
+                        <input type="text" name="tags" asp-for="@Model.BlIptc.Note" /> <br /><br />
+                        <input type="submit" value="Save">
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button style="background-color: #c66e02; color: azure;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="editexif" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div style="background-color: #32322e; color: white;" class="modal-content">
+            <div class="modal-header">
+                <b>Edit the EXIF </b>
+                <button style="color: #c66e02" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <br />
+                <form asp-action="" method="post">
+                    <fieldset>
+                        Picture ID: <br />
+                        <input type="text" name="id" asp-for="Id" disabled /><br /><br />
+                        Camera: <br />
+                        <input type="text" name="camera" asp-for="@Model.BLExif.CameraMaker" /> <br /><br />
+                        Model:<br />
+                        <input type="text" name="model" asp-for="@Model.BLExif.CameraModel" /> <br /><br />
+                        IOS Speed:<br />
+                        <input type="text" name="ios" asp-for="@Model.BLExif.IosSpeed" /><br /><br />
+                        Metering Mode:<br />
+                        <input type="text" name="meteric" asp-for="@Model.BLExif.MeteringMode " /><br /><br />
+                        <input type="submit" value="Save">
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button style="background-color: #c66e02; color: azure;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+﻿@using System.Security.Cryptography.X509Certificates
+@using Microsoft.AspNetCore;
+@model PhotoGallery.PhotographerViewModel.PhotoMembersViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2><strong>Welcome To Photo Gallery Application</strong></h2>
+<br />
+
+<div class="split left">
+    <div class="centered">
+        <div id="homeForm">
+            <form class="form-check-inline" method="post" asp-action="Home">
+                <fieldset>
+                    <legend class="legendLabel">Login</legend>
+                    <p style="text-align: left">Email:</p>
+                    <input type="text" name="username" required="">
+                    <p style="text-align: left">Password:</p>
+                    <input type="password" name="password" required="">
+                    <br><br>
+                    <input asp-action="Home" class="button" type="submit" value="Login">
+                </fieldset>
+            </form>
+            <br />
+            <br />
+            <p>Not a User? Click here to Register</p>
+        </div>
+    </div>
+</div>
+<div class="split right">
+    <div class="centered">
+        <strong>All Photographers</strong>
+        <br />
+        <br />
+        <table class="w3-table-all">
+            <tr>
+                <th>Name</th>
+                <th>Number Of Pictures</th>
+            </tr>
+            @{
+                foreach (var item in Model.Members)
+                {
+                    <tr>
+                        <td>@item.FirstName @item.LastName </td>
+                        @for  (int i = 0; i < Model.photos.Count; i++)
+                        {
+                            if (item.Id == Model.photos[i].PhotoGrapherId)
+                            {
+                                <td style ="text-align: center"> @Model.photos[i].Count</td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
