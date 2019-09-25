@@ -12,7 +12,7 @@ namespace DAL
         public DatabaseConnection()
         {
             _connectionString =
-                @"Data Source = DESKTOP-3V9DINQ; Initial Catalog = Photographer; Integrated Security = true; MultipleActiveResultSets=true";
+                @"Data Source =(local)\SQLEXPRESS; Initial Catalog = Photographer; Integrated Security = true; MultipleActiveResultSets=true";
         }
         public SqlConnection SqlConnection
         {
