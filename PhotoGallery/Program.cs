@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,18 @@ namespace PhotoGallery
     {
         public static void Main(string[] args)
         {
+            var psiNpmRunDist = new ProcessStartInfo
+            {
+                FileName = "cmd",
+                RedirectStandardInput = true,
+                WorkingDirectory = "../Electron/"
+            };
+            var pNpmRunDist = Process.Start(psiNpmRunDist);
+            pNpmRunDist.StandardInput.WriteLine("npm start & exit");
+          
+         
             CreateWebHostBuilder(args).Build().Run();
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
