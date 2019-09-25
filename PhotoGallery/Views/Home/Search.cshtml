@@ -3,17 +3,50 @@
 @{
     ViewData["Title"] = "Search";
 }
+<style>
+    .column {
+        float: left;
+        width: 25%;
+        padding: 10px;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+</style>
 
 <h1>Search</h1>
+<br />
+<br />
+<a asp-action="Profile"> <p class="w3-xlarge"><i class="fa fa-home"></i> Home</p></a>
 
 @{
     foreach (var item in Model)
     {
-        <div class="searchContainer">
-            <img id="@item.Id" src="@item.Image" alt="@item.Ipic" style="width: 30%; height: 30%" @*onclick="myFunction(this);"*@>
-            <h3>IPTC</h3>
-            <p>item</p>
-
+        <div class="row">
+            <div class="column">
+                <img id="@item.Id" src="@item.Image" alt="@item.Ipic" width="200" height="800" @*onclick="myFunction(this);"*@>
+            </div>
+            <div class="column">
+                <h5><b>IPTC</b></h5>
+                <p>Tags: @item.BlIptc.Note</p>
+                <p>Note: @item.BlIptc.Text</p>
+            </div>
+            <div class="column">
+                <h5><b>EXIF</b></h5>
+                <p>Brand: @item.BLExif.CameraMaker</p>
+                <p>Model: @item.BLExif.CameraModel</p>
+                <p>IOS: @item.BLExif.IosSpeed</p>
+                <p>Metric: @item.BLExif.MeteringMode</p>
+            </div>
+            <div class="column">
+                <button id="editphoto" style='font-size:14px'>Edit <i class='fas fa-pen'></i></button>
+            </div>
         </div>
+        <br />
+        <br />
     }
 }

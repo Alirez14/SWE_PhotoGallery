@@ -11,19 +11,19 @@
     <br />
     <br />
     <div>
-        <form style="float: right;" method="get" asp-action="Search">
+        <form asp-controller ="Home" asp-action="Search" style="float: right;" method="get" >
             <div class="formContainer">
                 <div class="boxleft">
-                    <input type="text" placeholder="Search Photo..." />
+                    <input type="text" name="search" placeholder="Search Photo By Tags..." required/>
                 </div>
                 <div class="boxright">
                     <input type="submit" value="Search" />
                 </div>
             </div>
         </form>
-        <br />
-        <br />
     </div>
+    <br />
+    <br />
     <table class="table table-bordered table-sm table-striped">
         <thead>
             <tr>

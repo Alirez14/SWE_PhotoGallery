@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,6 +46,17 @@ namespace PhotoGallery
                 options.Cookie.IsEssential = true;
             });
 
+            services.AddIdentity<IdentityUser, IdentityRole>(config =>
+                {
+                    // Password requirements
+                    config.Password.RequireDigit = true;
+                    config.Password.RequiredLength = 6;
+                    config.Password.RequiredUniqueChars = 1;
+                    config.Password.RequireLowercase = true;
+                    config.Password.RequireNonAlphanumeric = true;
+                    config.Password.RequireUppercase = true;
+                })
+                .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

@@ -53,40 +53,50 @@ namespace DAL
         {
             var con = new DatabaseConnection().SqlConnection;
             List<BLPhoto> photos = new List<BLPhoto>();
-            BLPhoto pic = new BLPhoto();
 
             using (con)
             {
                 List<int> pictureId = new List<int>();
                 con.Open();
-                using (SqlCommand command = new SqlCommand("select * from Exif e join Iptc i on i.PictureId= e.PictureId where i.Tags like '%" + search + "%' ", con))
+                SqlCommand command =
+                    new SqlCommand(
+                        "select * from Exif e join Iptc i on i.PictureId= e.PictureId where i.Tags like '%" + search +
+                        "%' ", con);
+                var read = command.ExecuteReader();
+                while (read.Read())
                 {
-                    var read = command.ExecuteReader();
-                    while (read.Read())
-                    {
-                        pictureId.Add(Convert.ToInt32(read["PictureId"]));
-                        pic.BlIptc = new BLIptc();
-                        pic.BlIptc.Note = read["Tags"].ToString();
-                        pic.BlIptc.Text = read["PicText"].ToString();
-                        pic.BLExif = new BLExif();
-                        pic.BLExif.CameraMaker = read["CameraMaker"].ToString();
-                        pic.BLExif.CameraModel = read["CameraModel"].ToString();
-                        pic.BLExif.IosSpeed = Convert.ToInt32(read["IosSpeed"]);
-                        pic.BLExif.MeteringMode = read["MeteringMode"].ToString();
-                    }
-                    foreach (var item in pictureId)
-                    {
-                        SqlCommand cmd = new SqlCommand("Select * from Photos Where Id = " + item + " And PhotographerId = " + session, con);
-                        var dataredaer = cmd.ExecuteReader();
-                        while (dataredaer.Read())
-                        {
-                            pic.Image = dataredaer["FilePath"].ToString();
-                            photos.Add(pic);
-                        }
-                    }
+                    BLPhoto pic = new BLPhoto();
+                    pictureId.Add(Convert.ToInt32(read["PictureId"]));
+                    pic.Id = Convert.ToInt32(read["PictureId"]);
+                    pic.BlIptc = new BLIptc();
+                    pic.BlIptc.Note = read["Tags"].ToString();
+                    pic.BlIptc.Text = read["PicText"].ToString();
+                    pic.BLExif = new BLExif();
+                    pic.BLExif.CameraMaker = read["CameraMaker"].ToString();
+                    pic.BLExif.CameraModel = read["CameraModel"].ToString();
+                    pic.BLExif.IosSpeed = Convert.ToInt32(read["IosSpeed"]);
+                    pic.BLExif.MeteringMode = read["MeteringMode"].ToString();
+                    photos.Add(pic);
                 }
+
+                int iterator = 0;
+                foreach (var item in pictureId)
+                {
+                    SqlCommand cmd = new SqlCommand("Select * from Photos Where Id = " + item + " And PhotographerId = " + session, con);
+                    var dataredaer = cmd.ExecuteReader();
+                    while (dataredaer.Read())
+                    {
+                        BLPhoto pic = new BLPhoto();
+                        pic.Image = dataredaer["FilePath"].ToString();
+                        string str = pic.Image;
+                        photos[iterator].Image = str;
+                    }
+
+                    iterator++;
+                }
+
             }
-            
+
             return photos;
         }
     }

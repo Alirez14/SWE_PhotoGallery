@@ -13,7 +13,7 @@
         <div id="homeForm">
             <form class="form-check-inline" method="post" asp-action="Home">
                 <fieldset>
-                    <legend class="legendLabel">Login</legend>
+                    <legend class="legendLabel"><i class="fas fa-user"></i> Login</legend>
                     <p style="text-align: left">Email:</p>
                     <input type="text" name="username" required="">
                     <p style="text-align: left">Password:</p>
@@ -24,7 +24,8 @@
             </form>
             <br />
             <br />
-            <p>Not a User? Click here to Register</p>
+           
+            <p>Not a User? Click @Html.ActionLink("Here", "Register", new { /* id = Model.PrimaryKey */ }) to  Register</p>
         </div>
     </div>
 </div>
