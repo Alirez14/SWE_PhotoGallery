@@ -11,7 +11,11 @@ namespace DAL
 {
     public class EditPhoto
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BLPhoto Information(int id)
         {
             var con = new DatabaseConnection().SqlConnection;
@@ -55,6 +59,12 @@ namespace DAL
             return photo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="tags"></param>
+        /// <param name="id"></param>
         public void UpdateIptc(string text, string tags, int id)
         {
             var con = new DatabaseConnection().SqlConnection;
@@ -67,7 +77,7 @@ namespace DAL
                     var read = cmd.ExecuteNonQuery();
                     if (read == 0)
                     {
-                        SqlCommand command = new SqlCommand("insert into Iptc (PicText, Tags, PictureId) values('" + text + "','" + tags + "'," + id + ")" , con);
+                        SqlCommand command = new SqlCommand("insert into Iptc (PicText, Tags, PictureId) values('" + text + "','" + tags + "'," + id + ")", con);
                         var success = command.ExecuteNonQuery();
                     }
                 }
@@ -89,7 +99,7 @@ namespace DAL
                     var read = cmd.ExecuteNonQuery();
                     if (read == 0)
                     {
-                        SqlCommand command = new SqlCommand("insert into Iptc (PicText, PictureId) values('" + text + "',"+ id+ ")", con);
+                        SqlCommand command = new SqlCommand("insert into Iptc (PicText, PictureId) values('" + text + "'," + id + ")", con);
                         var success = command.ExecuteNonQuery();
 
                     }
@@ -97,6 +107,14 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="model"></param>
+        /// <param name="metric"></param>
+        /// <param name="ios"></param>
+        /// <param name="id"></param>
         public void UpdateExif(string camera, string model, string metric, int ios, int id)
         {
             var con = new DatabaseConnection().SqlConnection;

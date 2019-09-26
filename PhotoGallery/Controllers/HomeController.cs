@@ -25,6 +25,10 @@ namespace PhotoGallery.Controllers
     {
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             log.Info("User Open the Browser");
@@ -47,6 +51,12 @@ namespace PhotoGallery.Controllers
             return View(ViewModel);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Home(string username, string password)
         {
@@ -71,7 +81,15 @@ namespace PhotoGallery.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="middlename"></param>
+        /// <param name="email"></param>
+        /// <param name="birthday"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(string firstname, string lastname, string middlename, string email, DateTime? birthday)
@@ -95,6 +113,10 @@ namespace PhotoGallery.Controllers
             return RedirectToAction("Profile");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Route("/Home/Profile")]
         public IActionResult Profile()
         {
@@ -108,7 +130,10 @@ namespace PhotoGallery.Controllers
             return View(photographer);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Route("/Home/Gallery")]
         public IActionResult Gallery()
         {
@@ -117,6 +142,11 @@ namespace PhotoGallery.Controllers
             return View(pic);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         //[Route("/Home/EditPhoto/36")]
         public IActionResult EditPhoto(int id)
@@ -133,6 +163,17 @@ namespace PhotoGallery.Controllers
             return View(photo);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="iptctext"></param>
+        /// <param name="tags"></param>
+        /// <param name="camera"></param>
+        /// <param name="model"></param>
+        /// <param name="ios"></param>
+        /// <param name="meteric"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult EditPhoto(int id, string iptctext, string tags, string camera, string model, int ios, string meteric)
         {
@@ -152,12 +193,22 @@ namespace PhotoGallery.Controllers
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="yes"></param>
+        /// <param name="no"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Delete(string yes, string no)
         {
@@ -171,6 +222,11 @@ namespace PhotoGallery.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Search(string search)
         {
@@ -195,6 +251,17 @@ namespace PhotoGallery.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <param name="MiddleName"></param>
+        /// <param name="LastName"></param>
+        /// <param name="Notice"></param>
+        /// <param name="DateOfBirth"></param>
+        /// <param name="Email"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(string FirstName, string MiddleName, string LastName, string Notice, DateTime? DateOfBirth, string Email, string Password)
