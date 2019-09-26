@@ -24,7 +24,7 @@
             </form>
             <br />
             <br />
-           
+
             <p>Not a User? Click @Html.ActionLink("Here", "Register", new { /* id = Model.PrimaryKey */ }) to  Register</p>
         </div>
     </div>
@@ -44,11 +44,18 @@
                 {
                     <tr>
                         <td>@item.FirstName @item.LastName </td>
-                        @for  (int i = 0; i < Model.photos.Count; i++)
+                        @for (int i = 0; i < Model.photos.Count; i++)
                         {
                             if (item.Id == Model.photos[i].PhotoGrapherId)
                             {
-                                <td style ="text-align: center"> @Model.photos[i].Count</td>
+                                if (Model.photos[i].Count == 0)
+                                {
+                                    <td style="text-align: center">0</td>
+                                }
+                                else
+                                {
+                                    <td style="text-align: center"> @Model.photos[i].Count</td>
+                                }
                             }
                         }
                     </tr>

@@ -63,19 +63,36 @@ namespace DAL
                 con.Open();
                 if (!String.IsNullOrEmpty(text) && !String.IsNullOrEmpty(tags))
                 {
-                    SqlCommand cmd = new SqlCommand("Update Iptc set PicText = '" + text + "'" + ", Tags = '" + tags + "' " + "Where PictureId = " + id , con);
+                    SqlCommand cmd = new SqlCommand("Update Iptc set PicText = '" + text + "'" + ", Tags = '" + tags + "' " + "Where PictureId = " + id, con);
                     var read = cmd.ExecuteNonQuery();
+                    if (read == 0)
+                    {
+                        SqlCommand command = new SqlCommand("insert into Iptc (PicText, Tags, PictureId) values('" + text + "','" + tags + "'," + id + ")" , con);
+                        var success = command.ExecuteNonQuery();
+                    }
                 }
 
                 if (String.IsNullOrEmpty(text) && !String.IsNullOrEmpty(tags))
                 {
                     SqlCommand cmd = new SqlCommand("Update Iptc set Tags = '" + tags + "' " + "Where PictureId = " + id, con);
                     var read = cmd.ExecuteNonQuery();
+                    if (read == 0)
+                    {
+                        SqlCommand command = new SqlCommand("insert into Iptc (Tags, PictureId) values( '" + tags + "'," + id + ")", con);
+                        var success = command.ExecuteNonQuery();
+
+                    }
                 }
                 if (!String.IsNullOrEmpty(text) && String.IsNullOrEmpty(tags))
                 {
                     SqlCommand cmd = new SqlCommand("Update Iptc set PicText = '" + text + "' " + "Where PictureId = " + id, con);
                     var read = cmd.ExecuteNonQuery();
+                    if (read == 0)
+                    {
+                        SqlCommand command = new SqlCommand("insert into Iptc (PicText, PictureId) values('" + text + "',"+ id+ ")", con);
+                        var success = command.ExecuteNonQuery();
+
+                    }
                 }
             }
         }
