@@ -43,18 +43,6 @@ function myFunction(imgs) {
     expandImg.parentElement.style.display = "block";
 }
 
-$("#deleteForm").submit(function (e) {
-    e.preventDefault();
-    var formValue = $('.yesorno').val();
-    $.ajax({
-        url: "Delete/" + formValue,
-        data: { formValue: formValue },
-        method: "GET",
-        success: function () {
-            window.location.href = "Delete/" + formValue;
-        }
-    })
-});
 
 
 $("#editphoto").click(function (e) {

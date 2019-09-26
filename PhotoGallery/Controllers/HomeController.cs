@@ -134,12 +134,12 @@ namespace PhotoGallery.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditPhoto(int id, string text, string tags, string camera, string model, int ios, string meteric)
+        public IActionResult EditPhoto(int id, string iptctext, string tags, string camera, string model, int ios, string meteric)
         {
-            if (!String.IsNullOrEmpty(text) || !String.IsNullOrEmpty(tags))
+            if (!String.IsNullOrEmpty(iptctext) || !String.IsNullOrEmpty(tags))
             {
                 var edit = new EditPhoto();
-                edit.UpdateIptc(text, tags, id);
+                edit.UpdateIptc(iptctext, tags, id);
             }
 
             if (!String.IsNullOrEmpty(camera) || !String.IsNullOrEmpty(model) || !String.IsNullOrEmpty(meteric) || ios != 0)
@@ -158,11 +158,11 @@ namespace PhotoGallery.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpGet]
-        public IActionResult Delete(string str)
+        [HttpPost]
+        public IActionResult Delete(string yes, string no)
         {
             int session = Convert.ToInt32(HttpContext.Session.GetString("Id"));
-            if (str == "no")
+            if (!String.IsNullOrEmpty(no))
             {
                 return RedirectToAction("Profile", session);
             }

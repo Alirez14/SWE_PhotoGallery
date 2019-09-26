@@ -116,10 +116,12 @@
                 <h4>Are you Sure you want to delete your accout?</h4>
                 <h6>All your data will be delete</h6>
                 <br />
-                <form id="deleteForm">
-                    <input type="submit" class="yesorno" value="Yes"/>
-                    <input type="submit" class="yesorno" value="No"/>
+
+                <form method="post" asp-action="Delete">
+                    <input type="submit" value="yes" name="yes" />
+                    <input type="submit" value="No" name="no" />
                 </form>
+
             </div>
         </div>
     </div>
