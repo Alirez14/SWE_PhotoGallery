@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using BL.Model;
 using BL.Models;
 using DAL;
@@ -7,14 +8,51 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestProject1
 {
     [TestClass]
-    public class MODELTEST
+    public class APPTEST
     {
+        
+        #region DalTEST
+        [TestMethod]
+        public void Login_Test()
+        {
+            string i = "Sina1371$$";
+            byte[] b = Encoding.ASCII.GetBytes(i);
+            var login = new Login();
+            BLPhotographer person = login.authorization("barakatisina@gmail.com", b);
+            Assert.IsNotNull(person);
+        }
+        [TestMethod]
+        public void Model_Types()
+        {
+            var model = new BLPhoto();
+            var model2 = new BLPhotographer();
+           
+            Assert.AreNotEqual(model.GetType(),model2.GetType());
+        }
+        #endregion
+
+
+
+        #region BLTESTDAl
+
+        
+
+     
         [TestMethod]
         public void BlExif_Test()
         {
             var model = new BLExif();
             model.CameraMaker = "test";
             Assert.IsNotNull(model.CameraMaker);
+        }
+        [TestMethod]
+        public void Login_Test_null_photgrapher6()
+        {
+            int i = 1234;
+            byte[] b = BitConverter.GetBytes(i);
+            var login = new Login();
+   
+            Assert.ThrowsException<BadImageFormatException>(()=>login.authorization("barakatisina@gmail.com", b));
         }
         [TestMethod]
         public void BlExif2_Test()
@@ -26,22 +64,19 @@ namespace TestProject1
             
         }
         [TestMethod]
-        public void BlPhoto_Test()
+        public void Login_Test_null_photgrapher()
         {
-            var model = new BLPhoto();
-           
-            Assert.AreEqual(model.GetType(),typeof(BLPhoto));
+            int i = 1234;
+            byte[] b = BitConverter.GetBytes(i);
+            var login = new Login();
+            var person = login.authorization("xxx@xxx.com", b);
+            Assert.IsNull(person);
         }
-        [TestMethod]
-        public void Model_Types()
-        {
-            var model = new BLPhoto();
-            var model2 = new BLPhotographer();
-           
-            Assert.AreNotEqual(model.GetType(),model2.GetType());
-        }
+        #endregion
+      
 
-        #region BLPhotoGrapher
+          
+        #region Test
 
         [TestMethod]
         public void BLPhotographer_Validation1()
@@ -55,7 +90,7 @@ namespace TestProject1
                 reg.AddMember("33", "rtroiuiou", "oidciosdj",
                     "fiojvvij", date1, "efbtzbvrec", "rfrefefege");
             };
-           Assert.ThrowsException<BadImageFormatException>(dd);
+            Assert.ThrowsException<BadImageFormatException>(dd);
 
 
 
@@ -78,25 +113,7 @@ namespace TestProject1
 
 
         }
-        [TestMethod]
-        public void BLPhotographer_Validation3()
-        {
-            var dateString = "5/1/2008 8:30:52 AM";
-            DateTime date1 = DateTime.Parse(dateString,
-                System.Globalization.CultureInfo.InvariantCulture);
-            var reg = new Register();
-            Action dd = delegate
-            {
-                reg.AddMember("wefkwewknd", "rtroiuiou", "oidciosdj",
-                    "fiojvvij", date1, "test", "11111111");
-            };
-            Assert.ThrowsException<BadImageFormatException>(dd);
-
-
-
-        }
-        
-
         #endregion
+        
     }
 }
